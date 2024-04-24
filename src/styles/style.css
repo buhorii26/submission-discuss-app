@@ -1,0 +1,199 @@
+:root {
+  --accent-color: #00796b;
+  --foreground-color: #0f1419;
+  --background-color: white;
+  --gray-dark-color: #66757f;
+  --gray-light-color: #edeff1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+}
+h2,
+h3 {
+  color: #00a2c6;
+}
+footer {
+  padding: 20px;
+  color: white;
+  background-color: var(--accent-color);
+  text-align: center;
+  font-weight: bold;
+}
+nav a {
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+}
+nav a:hover {
+  font-weight: bold;
+  background-color: #dc6b19;
+}
+.profile header {
+  text-align: center;
+}
+.featured-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+.profile img {
+  max-width: 200px;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+}
+.jumbotron {
+  font-size: 20px;
+  padding: 60px;
+  background-color: var(--accent-color);
+  text-align: center;
+  color: white;
+}
+nav ul {
+  padding-inline: 4rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+nav li {
+  list-style-type: none;
+}
+nav {
+  background-color: var(--accent-color);
+  padding: 5px;
+  position: sticky;
+  top: 0;
+}
+main {
+  padding: 20px;
+  display: flex;
+  gap: 1.5rem;
+}
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.content {
+  flex: 5;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem 2rem;
+}
+aside {
+  flex: 1;
+}
+header {
+  display: inline;
+}
+.login-page,
+.register-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
+.login-page__hero,
+.register-page__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 160px;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+
+.login-page__main,
+.register-page__main {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-direction: column;
+  padding: 64px;
+}
+
+.login-page__main h2,
+.register-page h2 {
+  font-weight: 300;
+  font-size: 48px;
+}
+
+.login-input input,
+.register-input input {
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  margin: 8px 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-dark-color);
+}
+
+.login-input button,
+.register-input button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 8px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  border: 0;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.add-thread-page {
+  margin-top: 8px;
+}
+
+.add-thread-page__card {
+  margin-bottom: 16px;
+}
+
+.add-thread-page__h5 {
+  font-weight: "bold";
+  margin-left: 8px;
+  margin-top: 8px;
+}
+
+/* Perangkat dengan lebar layar 1200px dan di bawahnya */
+@media screen and (max-width: 1200px) {
+  main {
+    flex-flow: column nowrap;
+  }
+
+  main aside {
+    align-self: center;
+  }
+}
+
+/* Perangkat dengan lebar layar 768px dan di bawahnya */
+@media screen and (max-width: 768px) {
+  nav ul {
+    justify-content: center;
+  }
+
+  main aside {
+    align-self: stretch;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .login-page, .register-page {
+    grid-template-columns: 1.25fr 1fr;
+  }
+}
