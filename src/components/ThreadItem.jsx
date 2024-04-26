@@ -18,7 +18,6 @@ function ThreadItem({
   totalComments,
   upVote,
   downVote,
-  neutralizeVote,
   threadOwner,
   authUser,
 }) {
@@ -48,15 +47,13 @@ function ThreadItem({
         <img src={threadOwner.avatar} alt={threadOwner.name} />
       </div>
       <div className="thread-item__detail">
-        <header>
-          <div className="thread-item__user-info">
-            <p className="thread-item__user-name">{threadOwner.name}</p>
-            <p className="thread-item__created-at">{postedAt(createdAt)}</p>
-          </div>
-        </header>
         <article>
-          <p className="thread-item__category">{category}</p>
-          <p className="thread-item__title">{title}</p>
+          <button type="button" className="thread-item__category">
+            #
+            {category}
+          </button>
+          <h1 className="thread-item__title">{title}</h1>
+          <br />
           <p className="thread-item__body">{parse(truncatedBody)}</p>
         </article>
         <CardActions>
@@ -65,12 +62,17 @@ function ThreadItem({
             authUser={authUser}
             upVote={upVote}
             downVote={downVote}
-            neutralizeVote={neutralizeVote}
             upVotesBy={upVotesBy}
             downVotesBy={downVotesBy}
           />
           <FaRegComment />
           <p className="thread-item__total-comments">{totalComments}</p>
+          <p className="thread-item__created-at">{postedAt(createdAt)}</p>
+          <p className="thread-item__user-name">
+            Dibuat oleh
+            {' '}
+            <strong>{threadOwner.name}</strong>
+          </p>
         </CardActions>
       </div>
     </div>
@@ -80,7 +82,7 @@ function ThreadItem({
 const userShape = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  email: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
 };
 
@@ -93,6 +95,7 @@ const threadItemShape = {
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
+  authUser: PropTypes.string.isRequired,
   threadOwner: PropTypes.shape(userShape).isRequired,
 };
 
@@ -101,7 +104,6 @@ ThreadItem.propTypes = {
   authUser: PropTypes.string.isRequired,
   upVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
-  neutralizeVote: PropTypes.func.isRequired,
 };
 
 export { userShape, threadItemShape };

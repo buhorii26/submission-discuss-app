@@ -12,7 +12,7 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const onRegister = ({ name, email, password }) => {
     dispatch(asyncRegisterUser({ name, email, password }));
-    navigate('/');
+    navigate('/login');
   };
 
   return (

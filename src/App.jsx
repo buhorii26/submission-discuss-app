@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import LeaderboardsPage from './pages/LeaderboardsPage';
 import AboutPage from './pages/AboutPage';
 import AddThreadPage from './pages/AddThreadPage';
-// import ThreadDetailPage from './pages/ThreadDetailPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <Route path="/leaderboards" element={<LeaderboardsPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      {/* <Route path="/threads/:id" element={<ThreadDetailPage />} /> */}
+      <Route path="/threads/:threadId" element={<DetailPage />} />
     </Routes>
   );
 }

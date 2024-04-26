@@ -11,7 +11,7 @@ function VoteButton({
   id,
   upVote,
   downVote,
-  neutralizeVote,
+  neutralVote,
   upVotesBy,
   downVotesBy,
   authUser,
@@ -27,15 +27,15 @@ function VoteButton({
     downVote(id);
   };
 
-  const onNeutralizeVoteClick = () => {
-    neutralizeVote(id);
+  const onNeutralVoteClick = () => {
+    neutralVote(id);
   };
 
   return (
     <>
       {isUpVoted ? (
         <AiOutlineLike
-          onClick={onNeutralizeVoteClick}
+          onClick={onNeutralVoteClick}
         />
       ) : (
         <AiFillLike
@@ -45,7 +45,7 @@ function VoteButton({
       <p className="vote-button_upvotes">{upVotesBy.length}</p>
       {isDownVoted ? (
         <AiOutlineDislike
-          onClick={onNeutralizeVoteClick}
+          onClick={onNeutralVoteClick}
         />
       ) : (
         <AiFillDislike
@@ -61,7 +61,7 @@ VoteButton.propTypes = {
   id: PropTypes.string.isRequired,
   upVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
-  neutralizeVote: PropTypes.func.isRequired,
+  neutralVote: PropTypes.func.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   authUser: PropTypes.string.isRequired,

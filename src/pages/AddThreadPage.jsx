@@ -9,8 +9,8 @@ import Footer from '../components/Footer';
 function AddThreadPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onAddThread = ({ title, body, category }) => {
-    dispatch(asyncAddThread({ title, body, category }));
+  const onAddThread = ({ title, category, body }) => {
+    dispatch(asyncAddThread({ title, category, body }));
     navigate('/');
   };
   return (

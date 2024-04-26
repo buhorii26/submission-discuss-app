@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -95,14 +96,14 @@ function neutralVoteCommentActionCreator(commentId, userId) {
 
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
-    // dispatch(showLoading());
+    dispatch(showLoading());
     try {
       const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
+    dispatch(hideLoading());
   };
 }
 
@@ -185,7 +186,7 @@ function asyncDownVoteComment(commentId) {
     // dispatch(hideLoading());
   };
 }
-function asyncNeutralComment(commentId) {
+function asyncNeutralVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { threadDetail, authUser } = getState();
     dispatch(neutralVoteCommentActionCreator(commentId, authUser.id));
@@ -215,5 +216,5 @@ export {
   asyncAddComment,
   asyncUpVoteComment,
   asyncDownVoteComment,
-  asyncNeutralComment,
+  asyncNeutralVoteComment,
 };
