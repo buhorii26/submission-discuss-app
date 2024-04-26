@@ -133,7 +133,7 @@ function asyncDownVoteThreadDetail() {
 
 function asyncNeutralVoteThreadDetail() {
   return async (dispatch, getState) => {
-    // dispatch(showLoading());
+    dispatch(showLoading());
     const { threadDetail, authUser } = getState();
     dispatch(neutralVoteThreadDetailActionCreator(authUser.id));
     try {
@@ -141,12 +141,12 @@ function asyncNeutralVoteThreadDetail() {
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
+    dispatch(hideLoading());
   };
 }
 function asyncAddComment({ content }) {
   return async (dispatch, getState) => {
-    // dispatch(showLoading());
+    dispatch(showLoading());
     const { threadDetail } = getState();
     try {
       const comment = await api.createComment({
@@ -157,7 +157,7 @@ function asyncAddComment({ content }) {
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
+    dispatch(hideLoading());
   };
 }
 

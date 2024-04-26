@@ -12,6 +12,7 @@ import {
   asyncNeutralVoteComment,
 } from '../states/threadDetail/action';
 import ThreadDetail from '../components/ThreadDetail';
+import ThreadItem from '../components/ThreadItem';
 import CommentList from '../components/CommnentList';
 import CommentInput from '../components/CommentInput';
 import Loading from '../components/Loading';
@@ -19,17 +20,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function DetailPage() {
-  const { threadId } = useParams();
-  const {
-    threadDetail: thread,
-    authUser,
-  } = useSelector((states) => states);
-  const { threadDetail = {}, loading = true } = thread;
+  const { id } = useParams();
+  const { threadDetail = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncReceiveThreadDetail(threadId));
-  }, [threadId, dispatch]);
+    dispatch(asyncReceiveThreadDetail(id));
+  }, [id, dispatch]);
 
   const onUpVoteThreadDetail = () => {
     dispatch(asyncUpVoteThreadDetail());
@@ -47,49 +44,56 @@ function DetailPage() {
     dispatch(asyncAddComment({ content }));
   };
 
-  const onUpVoteComment = (id) => {
-    dispatch(asyncUpVoteComment(id));
+  const onUpVoteComment = () => {
+    dispatch(asyncUpVoteComment());
   };
 
-  const onDownVoteComment = (id) => {
-    dispatch(asyncDownVoteComment(id));
+  const onDownVoteComment = () => {
+    dispatch(asyncDownVoteComment());
   };
 
-  const onNeutralVoteComment = (id) => {
-    dispatch(asyncNeutralVoteComment(id));
+  const onNeutralVoteComment = () => {
+    dispatch(asyncNeutralVoteComment());
   };
+
+  if (!threadDetail) {
+    return null;
+  }
 
   return (
-    <section className="detail-page">
-      <div className="detail-page__card">
-        {loading ? <Loading /> : (
-          <>
-            <Header />
-            <ThreadDetail
-              {...threadDetail}
-              authUser={authUser.id}
-              upVoteThreadDetail={onUpVoteThreadDetail}
-              downVoteThreadDetail={onDownVoteThreadDetail}
-              neutralizeVoteThreadDetail={onNeutralVoteThreadDetail}
-            />
-            <CommentInput addComment={onCommentSubmit} />
-            <p className="detail-page__comment-count">
-              Komentar(
-              {threadDetail?.comments?.length}
-              )
-            </p>
-            <CommentList
-              authUser={authUser.id}
-              comments={threadDetail?.comments}
-              upVoteComment={onUpVoteComment}
-              downVoteComment={onDownVoteComment}
-              neutralizeVoteComment={onNeutralVoteComment}
-            />
-            <Footer />
-          </>
-        ) }
-      </div>
-    </section>
+    <>
+      <Header />
+      <section className="detail-page">
+        <Loading />
+        {threadDetail.parent && (
+        <div className="detail-page__card">
+          <h3>Comment To</h3>
+          <ThreadItem {...threadDetail.parent} authUser="user.id" />
+        </div>
+        )}
+        <ThreadDetail
+          {...threadDetail}
+          authUser={authUser.id}
+          upVoteThreadDetail={onUpVoteThreadDetail}
+          downVoteThreadDetail={onDownVoteThreadDetail}
+          neutralVoteThreadDetail={onNeutralVoteThreadDetail}
+        />
+        <CommentInput addComment={onCommentSubmit} />
+        <p className="detail-page__comment-count">
+          Komentar(
+          {threadDetail?.comments?.length}
+          )
+        </p>
+        <CommentList
+          authUser={authUser.id}
+          comments={threadDetail?.comments}
+          upVoteComment={onUpVoteComment}
+          downVoteComment={onDownVoteComment}
+          neutralVoteComment={onNeutralVoteComment}
+        />
+      </section>
+      <Footer />
+    </>
   );
 }
 
