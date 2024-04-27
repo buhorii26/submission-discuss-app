@@ -13,6 +13,11 @@ function LeaderboardsPage() {
   useEffect(() => {
     dispatch(asyncReceiveLeaderboards());
   }, [dispatch]);
+
+  if (!leaderboards) {
+    return null;
+  }
+
   return (
     <>
       <Header />

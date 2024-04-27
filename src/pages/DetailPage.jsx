@@ -13,7 +13,7 @@ import {
 } from '../states/threadDetail/action';
 import ThreadDetail from '../components/ThreadDetail';
 import ThreadItem from '../components/ThreadItem';
-import CommentList from '../components/CommnentList';
+import CommentList from '../components/CommentList';
 import CommentInput from '../components/CommentInput';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
@@ -57,7 +57,13 @@ function DetailPage() {
   };
 
   if (!threadDetail) {
-    return null;
+    return (
+      <>
+        <Header />
+        <p>Thread Tidak ditemukan!</p>
+        <Footer />
+      </>
+    );
   }
 
   return (

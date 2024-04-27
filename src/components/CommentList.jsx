@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CommentItem, { commentShape } from './CommentItem';
 
-function CommentsList({
+function CommentList({
   comments,
   authUser,
   upVoteComment,
   downVoteComment,
-  neutralizeVoteComment,
+  neutralVoteComment,
 }) {
   return (
     <div className="comments-list">
@@ -18,19 +18,19 @@ function CommentsList({
           authUser={authUser}
           upVote={upVoteComment}
           downVote={downVoteComment}
-          neutralizeVote={neutralizeVoteComment}
+          neutralVote={neutralVoteComment}
         />
       ))}
     </div>
   );
 }
 
-CommentsList.propTypes = {
+CommentList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape(commentShape)).isRequired,
   authUser: PropTypes.string.isRequired,
   upVoteComment: PropTypes.func.isRequired,
   downVoteComment: PropTypes.func.isRequired,
-  neutralizeVoteComment: PropTypes.func.isRequired,
+  neutralVoteComment: PropTypes.func.isRequired,
 };
 
-export default CommentsList;
+export default CommentList;

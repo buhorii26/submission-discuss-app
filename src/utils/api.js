@@ -164,7 +164,7 @@ const api = (() => {
 
     return threads;
   }
-  async function getDetailThread(id) {
+  async function getThreadDetail(id) {
     const response = await fetch(`${BASE_URL}/threads/${id}`);
 
     const responseJson = await response.json();
@@ -175,9 +175,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { detailThread } } = responseJson;
+    const { data: { threadDetail } } = responseJson;
 
-    return detailThread;
+    return threadDetail;
   }
   async function upVoteThread(id) {
     const response = await _fetchWithAuth(
@@ -327,7 +327,7 @@ const api = (() => {
     createThread,
     createComment,
     getAllThreads,
-    getDetailThread,
+    getThreadDetail,
     upVoteThread,
     downVoteThread,
     neutralVoteThread,

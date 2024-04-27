@@ -17,7 +17,7 @@ function App() {
       <Route path="/leaderboards" element={<LeaderboardsPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/threads/:threadId" element={<DetailPage />} />
+      <Route path="/threads/:id" element={<DetailPage />} />
     </Routes>
   );
 }
