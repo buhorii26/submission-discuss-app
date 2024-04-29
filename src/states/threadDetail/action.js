@@ -94,11 +94,12 @@ function neutralVoteCommentActionCreator(commentId, userId) {
   };
 }
 
-function asyncReceiveThreadDetail(id) {
+function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
     dispatch(showLoading());
+    dispatch(clearThreadDetailActionCreator());
     try {
-      const threadDetail = await api.getThreadDetail(id);
+      const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
@@ -116,6 +117,7 @@ function asyncUpVoteThreadDetail() {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
@@ -128,12 +130,12 @@ function asyncDownVoteThreadDetail() {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncNeutralVoteThreadDetail() {
   return async (dispatch, getState) => {
-    dispatch(showLoading());
     const { threadDetail, authUser } = getState();
     dispatch(neutralVoteThreadDetailActionCreator(authUser.id));
     try {

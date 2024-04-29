@@ -27,7 +27,7 @@ function LeaderboardsPage() {
           <title className="leaderboards-page__title">Leaderboards</title>
           <div className="leaderboards-page__grid-container">
             <div className="leaderboards-page__grid-item">
-              <h5 className="leaderboards-page__subtitle">Pengguna Teratas</h5>
+              <h5 className="leaderboards-page__subtitle">Klasmen Pengguna Aktif</h5>
             </div>
             <div className="leaderboards-page_grid-item">
               <h5 className="leaderboards-page__subtitle">Skor</h5>
