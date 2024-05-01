@@ -181,7 +181,7 @@ const api = (() => {
   }
   async function upVoteThread(id) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/threads/up-vote`,
+      `${BASE_URL}/threads/${id}/up-vote`,
       {
         method: 'POST',
         headers: {
@@ -203,7 +203,7 @@ const api = (() => {
   }
   async function downVoteThread(id) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/threads/down-vote`,
+      `${BASE_URL}/threads/${id}/down-vote`,
       {
         method: 'POST',
         headers: {
@@ -225,7 +225,7 @@ const api = (() => {
   }
   async function neutralVoteThread(id) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/threads/neutral-vote`,
+      `${BASE_URL}/threads/${id}/neutral-vote`,
       {
         method: 'POST',
         headers: {
