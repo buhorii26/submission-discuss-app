@@ -19,7 +19,7 @@ function ThreadItem({
   upVote,
   downVote,
   threadOwner,
-  authUser,
+  neutralVote,
 }) {
   const navigate = useNavigate();
 
@@ -47,32 +47,32 @@ function ThreadItem({
         <img src={threadOwner.avatar} alt={threadOwner.name} />
       </div>
       <div className="thread-item__detail">
-        <article>
+        <div>
           <button type="button" className="thread-item__category">
             #
             {category}
           </button>
           <h1 className="thread-item__title">{title}</h1>
           <br />
-          <p className="thread-item__body">{parse(truncatedBody)}</p>
-        </article>
+          <span className="thread-item__body">{parse(truncatedBody)}</span>
+        </div>
         <CardActions>
           <VoteButton
             id={id}
-            authUser={authUser}
             upVote={upVote}
             downVote={downVote}
             upVotesBy={upVotesBy}
             downVotesBy={downVotesBy}
+            neutralVote={neutralVote}
           />
           <FaRegComment />
-          <p className="thread-item__total-comments">{totalComments}</p>
-          <p className="thread-item__created-at">{postedAt(createdAt)}</p>
-          <p className="thread-item__user-name">
+          <span className="thread-item__total-comments">{totalComments}</span>
+          <span className="thread-item__created-at">{postedAt(createdAt)}</span>
+          <span className="thread-item__user-name">
             Dibuat oleh
             {' '}
             <strong>{threadOwner.name}</strong>
-          </p>
+          </span>
         </CardActions>
       </div>
     </div>
@@ -95,15 +95,14 @@ const threadItemShape = {
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
-  authUser: PropTypes.string.isRequired,
   threadOwner: PropTypes.shape(userShape).isRequired,
 };
 
 ThreadItem.propTypes = {
   ...threadItemShape,
-  authUser: PropTypes.string.isRequired,
   upVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
+  neutralVote: PropTypes.func.isRequired,
 };
 
 export { userShape, threadItemShape };

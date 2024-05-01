@@ -14,10 +14,9 @@ function VoteButton({
   neutralVote,
   upVotesBy,
   downVotesBy,
-  authUser,
 }) {
-  const isUpVoted = upVotesBy.includes(authUser);
-  const isDownVoted = downVotesBy.includes(authUser);
+  const isUpVoted = upVotesBy.includes(id);
+  const isDownVoted = downVotesBy.includes(id);
 
   const onUpVoteClick = () => {
     upVote(id);
@@ -64,7 +63,6 @@ VoteButton.propTypes = {
   neutralVote: PropTypes.func.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  authUser: PropTypes.string.isRequired,
 };
 
 export default VoteButton;

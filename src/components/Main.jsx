@@ -48,14 +48,14 @@ function Main() {
         <main>
           <div className="content">
             <h1>Diskusi Aktif</h1>
-            <article className="card">
+            <div className="card">
               <ThreadList
                 threads={threadsList}
                 upVote={onUpVoteThread}
                 downVote={onDownVoteThread}
                 neutralVote={onNeutralVoteThread}
               />
-            </article>
+            </div>
           </div>
         </main>
       </>
@@ -68,7 +68,7 @@ function Main() {
       <main>
         <div className="content">
           <h1>Diskusi Aktif</h1>
-          <article className="card">
+          <div className="card">
             <ThreadList
               threads={threadsList}
               upVote={onUpVoteThread}
@@ -88,7 +88,7 @@ function Main() {
                 <IoMdAdd style={{ fontSize: '30px', color: 'black' }} />
               </Fab>
             </Link>
-          </article>
+          </div>
         </div>
       </main>
     </>
