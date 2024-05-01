@@ -94,12 +94,14 @@ function neutralVoteCommentActionCreator(commentId, userId) {
   };
 }
 
-function asyncReceiveThreadDetail(threadId) {
+// thunk function
+function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
     dispatch(showLoading());
     dispatch(clearThreadDetailActionCreator());
+
     try {
-      const threadDetail = await api.getThreadDetail(threadId);
+      const threadDetail = await api.getThreadDetail(id);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
