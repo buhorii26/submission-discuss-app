@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  asyncReceiveThreadDetail,
-  asyncUpVoteThreadDetail,
-  asyncDownVoteThreadDetail,
-  asyncNeutralVoteThreadDetail,
+  asyncReceiveDetailThread,
+  asyncUpVoteDetailThread,
+  asyncDownVoteDetailThread,
+  asyncNeutralVoteDetailThread,
   asyncAddComment,
   asyncUpVoteComment,
   asyncDownVoteComment,
@@ -21,23 +21,23 @@ import Footer from '../components/Footer';
 
 function DetailPage() {
   const { threadId } = useParams();
-  const { threadDetail = null, authUser } = useSelector((states) => states);
+  const { detailThread = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncReceiveThreadDetail(threadId));
+    dispatch(asyncReceiveDetailThread(threadId));
   }, [threadId, dispatch]);
 
   const onUpVoteThreadDetail = () => {
-    dispatch(asyncUpVoteThreadDetail());
+    dispatch(asyncUpVoteDetailThread());
   };
 
   const onDownVoteThreadDetail = () => {
-    dispatch(asyncDownVoteThreadDetail());
+    dispatch(asyncDownVoteDetailThread());
   };
 
   const onNeutralVoteThreadDetail = () => {
-    dispatch(asyncNeutralVoteThreadDetail());
+    dispatch(asyncNeutralVoteDetailThread());
   };
 
   const onCommentSubmit = (content) => {
@@ -56,7 +56,7 @@ function DetailPage() {
     dispatch(asyncNeutralVoteComment());
   };
 
-  if (!threadDetail) {
+  if (!detailThread) {
     return (
       <>
         <Header />
@@ -71,14 +71,14 @@ function DetailPage() {
       <Header />
       <section className="detail-page">
         <Loading />
-        {threadDetail.parent && (
+        {detailThread.parent && (
         <div className="detail-page__card">
           <h3>Comment To</h3>
-          <ThreadItem {...threadDetail.parent} authUser="user.id" />
+          <ThreadItem {...detailThread.parent} authUser="user.id" />
         </div>
         )}
         <ThreadDetail
-          {...threadDetail}
+          {...detailThread}
           authUser={authUser.id}
           upVoteThreadDetail={onUpVoteThreadDetail}
           downVoteThreadDetail={onDownVoteThreadDetail}
@@ -87,12 +87,12 @@ function DetailPage() {
         <CommentInput addComment={onCommentSubmit} />
         <p className="detail-page__comment-count">
           Komentar(
-          {threadDetail?.comments?.length}
+          {detailThread?.comments?.length}
           )
         </p>
         <CommentList
           authUser={authUser.id}
-          comments={threadDetail?.comments}
+          comments={detailThread?.comments}
           upVoteComment={onUpVoteComment}
           downVoteComment={onDownVoteComment}
           neutralVoteComment={onNeutralVoteComment}

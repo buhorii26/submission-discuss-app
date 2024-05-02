@@ -1,47 +1,47 @@
 import { ActionType } from './action';
 
-function threadDetailReducer(threadDetail = null, action = {}) {
+function detailThreadReducer(detailThread = null, action = {}) {
   switch (action.type) {
-    case ActionType.RECEIVE_THREAD_DETAIL:
-      return action.payload.threadDetail;
-    case ActionType.CLEAR_THREAD_DETAIL:
+    case ActionType.RECEIVE_DETAIL_THREAD:
+      return action.payload.detailThread;
+    case ActionType.CLEAR_DETAIL_THREAD:
       return null;
-    case ActionType.UP_VOTE_THREAD_DETAIL:
+    case ActionType.UP_VOTE_DETAIL_THREAD:
       return {
-        ...threadDetail,
-        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.upVotesBy.concat([action.payload.userId]),
+        ...detailThread,
+        upVotesBy: detailThread.upVotesBy.includes(action.payload.userId)
+          ? detailThread.upVotesBy.filter((id) => id !== action.payload.userId)
+          : detailThread.upVotesBy.concat([action.payload.userId]),
       };
-    case ActionType.DOWN_VOTE_THREAD_DETAIL:
+    case ActionType.DOWN_VOTE_DETAIL_THREAD:
       return {
-        ...threadDetail,
-        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.downVotesBy.concat([action.payload.userId]),
+        ...detailThread,
+        downVotesBy: detailThread.downVotesBy.includes(action.payload.userId)
+          ? detailThread.downVotesBy.filter((id) => id !== action.payload.userId)
+          : detailThread.downVotesBy.concat([action.payload.userId]),
       };
-    case ActionType.NEUTRAL_VOTE_THREAD_DETAIL:
+    case ActionType.NEUTRAL_VOTE_DETAIL_THREAD:
       return {
-        ...threadDetail,
-        neutralVotesBy: threadDetail.neutralVotesBy.includes(action.payload.userId)
-          ? threadDetail.neutralVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.neutralVotesBy.concat([action.payload.userId]),
+        ...detailThread,
+        neutralVotesBy: detailThread.neutralVotesBy.includes(action.payload.userId)
+          ? detailThread.neutralVotesBy.filter((id) => id !== action.payload.userId)
+          : detailThread.neutralVotesBy.concat([action.payload.userId]),
       };
     case ActionType.ADD_COMMENT:
       return {
-        ...threadDetail,
-        comments: [action.payload.comment, ...threadDetail.comments],
+        ...detailThread,
+        comments: [action.payload.comment, ...detailThread.comments],
       };
     case ActionType.UP_VOTE_COMMENT:
       return {
-        ...threadDetail,
-        comments: threadDetail.comments.map((comment) => {
+        ...detailThread,
+        comments: detailThread.comments.map((comment) => {
           if (comment.id === action.payload.commentId) {
             return {
               ...comment,
-              upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-                ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-                : threadDetail.upVotesBy.concat([action.payload.userId]),
+              upVotesBy: detailThread.upVotesBy.includes(action.payload.userId)
+                ? detailThread.upVotesBy.filter((id) => id !== action.payload.userId)
+                : detailThread.upVotesBy.concat([action.payload.userId]),
             };
           }
           return comment;
@@ -49,8 +49,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
       };
     case ActionType.DOWN_VOTE_COMMENT:
       return {
-        ...threadDetail,
-        comments: threadDetail.comments.map((comment) => {
+        ...detailThread,
+        comments: detailThread.comments.map((comment) => {
           if (comment.id === action.payload.commentId) {
             return {
               ...comment,
@@ -64,22 +64,22 @@ function threadDetailReducer(threadDetail = null, action = {}) {
       };
     case ActionType.NEUTRAL_VOTE_COMMENT:
       return {
-        ...threadDetail,
-        comments: threadDetail.comments.map((comment) => {
+        ...detailThread,
+        comments: detailThread.comments.map((comment) => {
           if (comment.id === action.payload.commentId) {
             return {
               ...comment,
-              neutralVotesBy: threadDetail.neutralVotesBy.includes(action.payload.userId)
-                ? threadDetail.neutralVotesBy.filter((id) => id !== action.payload.userId)
-                : threadDetail.neutralVotesBy.concat([action.payload.userId]),
+              neutralVotesBy: detailThread.neutralVotesBy.includes(action.payload.userId)
+                ? detailThread.neutralVotesBy.filter((id) => id !== action.payload.userId)
+                : detailThread.neutralVotesBy.concat([action.payload.userId]),
             };
           }
           return comment;
         }),
       };
     default:
-      return threadDetail;
+      return detailThread;
   }
 }
 
-export default threadDetailReducer;
+export default detailThreadReducer;
