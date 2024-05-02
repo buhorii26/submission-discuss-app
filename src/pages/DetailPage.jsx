@@ -20,13 +20,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function DetailPage() {
-  const { id } = useParams();
+  const { threadId } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncReceiveThreadDetail(id));
-  }, [id, dispatch]);
+    dispatch(asyncReceiveThreadDetail(threadId));
+  }, [threadId, dispatch]);
 
   const onUpVoteThreadDetail = () => {
     dispatch(asyncUpVoteThreadDetail());

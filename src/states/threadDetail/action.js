@@ -24,7 +24,7 @@ function receiveThreadDetailActionCreator(threadDetail) {
 
 function clearThreadDetailActionCreator() {
   return {
-    type: ActionType.CLEAR_TALK_DETAIL,
+    type: ActionType.CLEAR_THREAD_DETAIL,
   };
 }
 
@@ -95,13 +95,13 @@ function neutralVoteCommentActionCreator(commentId, userId) {
 }
 
 // thunk function
-function asyncReceiveThreadDetail(id) {
+function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
     dispatch(showLoading());
     dispatch(clearThreadDetailActionCreator());
 
     try {
-      const threadDetail = await api.getThreadDetail(id);
+      const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);

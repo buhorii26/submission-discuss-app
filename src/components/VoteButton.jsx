@@ -15,8 +15,8 @@ function VoteButton({
   upVotesBy,
   downVotesBy,
 }) {
-  const isUpVoted = upVotesBy.includes(id);
-  const isDownVoted = downVotesBy.includes(id);
+  const isUpVoted = upVotesBy;
+  const isDownVoted = downVotesBy;
 
   const onUpVoteClick = () => {
     upVote(id);
