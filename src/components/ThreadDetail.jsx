@@ -14,9 +14,9 @@ function ThreadDetail({
   createdAt,
   upVotesBy,
   downVotesBy,
-  upVoteThreadDetail,
-  downVoteThreadDetail,
-  neutralizeVoteThreadDetail,
+  upVote,
+  downVote,
+  neutralVote,
   authUser,
 }) {
   return (
@@ -37,9 +37,9 @@ function ThreadDetail({
           <VoteButton
             id={id}
             authUser={authUser}
-            upVote={upVoteThreadDetail}
-            downVote={downVoteThreadDetail}
-            neutralizeVote={neutralizeVoteThreadDetail}
+            upVote={upVote}
+            downVote={downVote}
+            neutralVote={neutralVote}
             upVotesBy={upVotesBy}
             downVotesBy={downVotesBy}
           />
@@ -60,9 +60,9 @@ ThreadDetail.propTypes = {
   authUser: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  upVoteThreadDetail: PropTypes.func.isRequired,
-  downVoteThreadDetail: PropTypes.func.isRequired,
-  neutralizeVoteThreadDetail: PropTypes.func.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired,
+  neutralVote: PropTypes.func.isRequired,
 };
 
 export default ThreadDetail;

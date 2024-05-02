@@ -18,8 +18,8 @@ function ThreadItem({
   totalComments,
   upVote,
   downVote,
-  threadOwner,
   neutralVote,
+  threadOwner,
 }) {
   const navigate = useNavigate();
 
