@@ -15,8 +15,8 @@ function VoteButton({
   upVotesBy,
   downVotesBy,
 }) {
-  const isUpVoted = upVotesBy;
-  const isDownVoted = downVotesBy;
+  const isUpVoted = upVotesBy.includes(id);
+  const isDownVoted = downVotesBy.includes(id);
 
   const onUpVoteClick = () => {
     upVote(id);
@@ -33,21 +33,21 @@ function VoteButton({
   return (
     <>
       {isUpVoted ? (
-        <AiOutlineLike
+        <AiFillLike
           onClick={onNeutralVoteClick}
         />
       ) : (
-        <AiFillLike
+        <AiOutlineLike
           onClick={onUpVoteClick}
         />
       )}
       <p className="vote-button_upvotes">{upVotesBy.length}</p>
       {isDownVoted ? (
-        <AiOutlineDislike
+        <AiFillDislike
           onClick={onNeutralVoteClick}
         />
       ) : (
-        <AiFillDislike
+        <AiOutlineDislike
           onClick={onDownVoteClick}
         />
       )}

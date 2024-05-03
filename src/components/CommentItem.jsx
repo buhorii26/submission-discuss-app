@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { userShape } from './ThreadItem';
+import CardActions from '@mui/material/CardActions';
 import VoteButton from './VoteButton';
 import { postedAt } from '../utils';
 
@@ -13,8 +13,7 @@ function CommentItem({
   downVotesBy,
   upVote,
   downVote,
-  neutralizeVote,
-  authUser,
+  neutralVote,
 }) {
   return (
     <section className="comment-item">
@@ -29,23 +28,25 @@ function CommentItem({
             <p className="comment-item_user-name">{owner.name}</p>
           </div>
         </div>
-        <div className="comment-item_grid">
-          <span className="comment-item_user-postedat">{postedAt(createdAt)}</span>
-        </div>
       </div>
       <p className="comment-item_user-content">{content}</p>
-      <div className="comment-item_card">
+      <CardActions>
         <VoteButton
           id={id}
-          authUser={authUser}
-          upVotesBy={upVotesBy}
-          downVotesBy={downVotesBy}
           upVote={upVote}
           downVote={downVote}
-          neutralizeVote={neutralizeVote}
+          neutralVote={neutralVote}
+          upVotesBy={upVotesBy}
+          downVotesBy={downVotesBy}
         />
-      </div>
-      <div className="comment-item_divider" />
+        <span className="thread-item__user-name">
+          Dibuat oleh
+          {' '}
+          <strong>{owner.name}</strong>
+          {' '}
+          {postedAt(createdAt)}
+        </span>
+      </CardActions>
     </section>
   );
 }
@@ -54,7 +55,10 @@ const commentShape = {
   id: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  owner: PropTypes.shape(userShape).isRequired,
+  owner: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
@@ -63,8 +67,7 @@ CommentItem.propTypes = {
   ...commentShape,
   upVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
-  neutralizeVote: PropTypes.func.isRequired,
-  authUser: PropTypes.string.isRequired,
+  neutralVote: PropTypes.func.isRequired,
 };
 
 export { commentShape };

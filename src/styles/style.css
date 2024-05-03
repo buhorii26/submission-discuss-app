@@ -249,6 +249,132 @@ header {
 .thread-item__detail {
   flex: 1;
 }
+.thread-item__user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thread-item__created-at {
+  color: var(--gray-dark-color);
+  font-size: 15px;
+  position: absolute; 
+  top: 10px;
+  right: 10px; 
+}
+
+.thread-item__user-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.thread-item__category {
+  font-size: 15px;
+  color: green; 
+  margin-bottom: 4px;
+}
+
+.thread-item__title {
+  font-size: 18px; 
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.thread-item__body {
+  font-size: 15px;
+}
+
+.thread-item__total-comments {
+  font-size: 15px;
+}
+
+.thread-item__total-comments,
+.thread-item__user-name {
+  color: var(--gray-dark-color);
+}
+.detail-page {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.detail-page__parent {
+  margin-bottom: 64px;
+}
+
+.detail-page__parent h3 {
+  margin: 8px 0 16px 0;
+}
+
+.thread-detail {
+  margin-top: 32px;
+}
+
+.thread-detail header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.thread-detail header img {
+  width: 40px;
+  height: 40px; /* Set the height to match the width */
+  border-radius: 50%;
+}
+
+.thread-detail__user-info {
+  font-size: 20px;
+}
+
+.thread-detail__user-name {
+  font-weight: 600;
+}
+
+.thread-detail__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.thread-detail__category {
+  font-size: 16px;
+  color: green;
+  margin-bottom: 8px;
+}
+
+.thread-detail__body {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.thread-detail footer {
+  margin-top: 32px;
+  display: flex;
+}
+
+.thread-detail__like {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.thread-detail__like button {
+  background-color: transparent;
+  border: 0;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.thread-reply-input {
+  margin-top: 32px;
+}
+
+ .vote-button_upvotes .vote-button_downvotes{
+  font-size: 12px;
+ }
+ 
 .leaderboards-page__title {
   font-weight: bold;
   margin-left: 10px;
@@ -350,6 +476,11 @@ margin-right: 16px;
     flex: 0 0 auto;
   }
 
+  .thread-item_user-avatar {
+    width: 20px;
+    border-radius: 50%;
+  }
+
   .comment-item_user-avatar {
     width: 20px;
     height: 20px;
@@ -398,10 +529,6 @@ margin-right: 16px;
 @media screen and (max-width: 768px) {
   nav ul {
     justify-content: center;
-  }
-
-  main aside {
-    align-self: stretch;
   }
 }
 

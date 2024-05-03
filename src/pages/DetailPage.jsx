@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   asyncReceiveDetailThread,
@@ -10,9 +10,8 @@ import {
   asyncUpVoteComment,
   asyncDownVoteComment,
   asyncNeutralVoteComment,
-} from '../states/threadDetail/action';
+} from '../states/detailThread/action';
 import ThreadDetail from '../components/ThreadDetail';
-import ThreadItem from '../components/ThreadItem';
 import CommentList from '../components/CommentList';
 import CommentInput from '../components/CommentInput';
 import Loading from '../components/Loading';
@@ -29,15 +28,27 @@ function DetailPage() {
   }, [id, dispatch]);
 
   const onUpVoteThreadDetail = () => {
-    dispatch(asyncUpVoteDetailThread());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncUpVoteDetailThread());
+    }
   };
 
   const onDownVoteThreadDetail = () => {
-    dispatch(asyncDownVoteDetailThread());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncDownVoteDetailThread());
+    }
   };
 
   const onNeutralVoteThreadDetail = () => {
-    dispatch(asyncNeutralVoteDetailThread());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncNeutralVoteDetailThread());
+    }
   };
 
   const onCommentSubmit = (content) => {
@@ -45,15 +56,27 @@ function DetailPage() {
   };
 
   const onUpVoteComment = () => {
-    dispatch(asyncUpVoteComment());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncUpVoteComment());
+    }
   };
 
   const onDownVoteComment = () => {
-    dispatch(asyncDownVoteComment());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncDownVoteComment());
+    }
   };
 
   const onNeutralVoteComment = () => {
-    dispatch(asyncNeutralVoteComment());
+    if (authUser === null) {
+      alert('Login First');
+    } else {
+      dispatch(asyncNeutralVoteComment());
+    }
   };
 
   if (!detailThread) {
@@ -66,32 +89,54 @@ function DetailPage() {
     );
   }
 
+  if (authUser === null) {
+    return (
+      <>
+        <Header />
+        <section className="detail-page">
+          <Loading />
+          <ThreadDetail
+            {...detailThread}
+            upVote={onUpVoteThreadDetail}
+            downVote={onDownVoteThreadDetail}
+            neutralVote={onNeutralVoteThreadDetail}
+          />
+          <p className="detail-page__comment-count">
+            <Link to="/login">Login</Link>
+            {' '}
+            <span>untuk memberi komentar</span>
+          </p>
+          <br />
+          <CommentList
+            comments={detailThread?.comments}
+            upVoteComment={onUpVoteComment}
+            downVoteComment={onDownVoteComment}
+            neutralVoteComment={onNeutralVoteComment}
+          />
+        </section>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
       <section className="detail-page">
         <Loading />
-        {detailThread.parent && (
-        <div className="detail-page__card">
-          <h3>Comment To</h3>
-          <ThreadItem {...detailThread.parent} authUser="user.id" />
-        </div>
-        )}
         <ThreadDetail
           {...detailThread}
-          authUser={authUser.id}
-          upVoteThreadDetail={onUpVoteThreadDetail}
-          downVoteThreadDetail={onDownVoteThreadDetail}
-          neutralVoteThreadDetail={onNeutralVoteThreadDetail}
+          upVote={onUpVoteThreadDetail}
+          downVote={onDownVoteThreadDetail}
+          neutralVote={onNeutralVoteThreadDetail}
         />
         <CommentInput addComment={onCommentSubmit} />
         <p className="detail-page__comment-count">
-          Komentar(
+          Komentar (
           {detailThread?.comments?.length}
           )
         </p>
         <CommentList
-          authUser={authUser.id}
           comments={detailThread?.comments}
           upVoteComment={onUpVoteComment}
           downVoteComment={onDownVoteComment}

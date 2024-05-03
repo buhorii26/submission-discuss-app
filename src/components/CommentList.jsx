@@ -4,7 +4,6 @@ import CommentItem, { commentShape } from './CommentItem';
 
 function CommentList({
   comments,
-  authUser,
   upVoteComment,
   downVoteComment,
   neutralVoteComment,
@@ -15,7 +14,6 @@ function CommentList({
         <CommentItem
           key={comment.id}
           {...comment}
-          authUser={authUser}
           upVote={upVoteComment}
           downVote={downVoteComment}
           neutralVote={neutralVoteComment}
@@ -27,7 +25,6 @@ function CommentList({
 
 CommentList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape(commentShape)).isRequired,
-  authUser: PropTypes.string.isRequired,
   upVoteComment: PropTypes.func.isRequired,
   downVoteComment: PropTypes.func.isRequired,
   neutralVoteComment: PropTypes.func.isRequired,

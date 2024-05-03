@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
-import { userShape } from './ThreadItem';
+import CardActions from '@mui/material/CardActions';
 import VoteButton from './VoteButton';
 import { postedAt } from '../utils';
 
@@ -17,35 +17,39 @@ function ThreadDetail({
   upVote,
   downVote,
   neutralVote,
-  authUser,
 }) {
   return (
     <section className="thread-detail">
       <header>
-        <img src={owner.avatar} alt={owner} className="thread-detail__avatar" />
         <div className="thread-detail__user-info">
-          <p className="thread-detail__user-name">{owner.name}</p>
+          <button type="button" className="thread-item__category">
+            #
+            {category}
+          </button>
         </div>
       </header>
       <article>
-        <p className="thread-detail__category">{category}</p>
+        <p className="thread-detail__user-name">{owner.name}</p>
         <p className="thread-detail__title">{title}</p>
         <p className="thread-detail__body">{parse(body)}</p>
       </article>
-      <footer>
-        <div className="thread-detail__like">
-          <VoteButton
-            id={id}
-            authUser={authUser}
-            upVote={upVote}
-            downVote={downVote}
-            neutralVote={neutralVote}
-            upVotesBy={upVotesBy}
-            downVotesBy={downVotesBy}
-          />
-          <p className="thread-detail__created-at">{postedAt(createdAt)}</p>
-        </div>
-      </footer>
+      <CardActions>
+        <VoteButton
+          id={id}
+          upVote={upVote}
+          downVote={downVote}
+          neutralVote={neutralVote}
+          upVotesBy={upVotesBy}
+          downVotesBy={downVotesBy}
+        />
+        <p className="thread-item__user-name">
+          Dibuat oleh
+          {' '}
+          <strong>{owner.name}</strong>
+          {' '}
+          {postedAt(createdAt)}
+        </p>
+      </CardActions>
     </section>
   );
 }
@@ -54,10 +58,12 @@ ThreadDetail.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  owner: PropTypes.shape(userShape).isRequired,
+  owner: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  authUser: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   upVote: PropTypes.func.isRequired,
