@@ -200,6 +200,9 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
+    const { data: { vote } } = responseJson;
+
+    return vote;
   }
   async function downVoteThread(id) {
     const response = await _fetchWithAuth(
@@ -222,6 +225,9 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
+    const { data: { vote } } = responseJson;
+
+    return vote;
   }
   async function neutralVoteThread(id) {
     const response = await _fetchWithAuth(
@@ -244,6 +250,9 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
+    const { data: { vote } } = responseJson;
+
+    return vote;
   }
   async function upVoteComment(threadId, commentId) {
     const response = await _fetchWithAuth(

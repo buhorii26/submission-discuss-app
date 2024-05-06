@@ -28,11 +28,11 @@ function ThreadDetail({
           </button>
         </div>
       </header>
-      <article>
+      <div>
         <p className="thread-detail__user-name">{owner.name}</p>
-        <p className="thread-detail__title">{title}</p>
-        <p className="thread-detail__body">{parse(body)}</p>
-      </article>
+        <span className="thread-detail__title"><strong>{title}</strong></span>
+        <span className="thread-detail__body">{parse(body)}</span>
+      </div>
       <CardActions>
         <VoteButton
           id={id}
@@ -42,13 +42,15 @@ function ThreadDetail({
           upVotesBy={upVotesBy}
           downVotesBy={downVotesBy}
         />
-        <p className="thread-item__user-name">
+        <span className="thread-item__user-name">
           Dibuat oleh
+          {' '}
+          <img src={owner.avatar} alt={owner} className="thread-item_user-avatar" />
           {' '}
           <strong>{owner.name}</strong>
           {' '}
           {postedAt(createdAt)}
-        </p>
+        </span>
       </CardActions>
     </section>
   );
@@ -61,6 +63,7 @@ ThreadDetail.propTypes = {
   owner: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
+    avatar: PropTypes.string,
   }).isRequired,
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,

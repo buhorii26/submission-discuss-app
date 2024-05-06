@@ -42,6 +42,8 @@ function CommentItem({
         <span className="thread-item__user-name">
           Dibuat oleh
           {' '}
+          <img src={owner.avatar} alt={owner} className="thread-item_user-avatar" />
+          {' '}
           <strong>{owner.name}</strong>
           {' '}
           {postedAt(createdAt)}
