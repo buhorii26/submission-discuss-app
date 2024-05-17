@@ -104,4 +104,105 @@ describe('threadsReducers function', () => {
     // assert
     expect(nextState).toEqual([action.payload.thread, ...initialState]);
   });
+
+  it('should return the thread with toggled UpVote when given by UP_VOTE_THREAD action', () => {
+    // arrange
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Thread Pertama',
+        body: 'Ini adalah thread pertama',
+        category: 'General',
+        createdAt: '2021-06-21T07:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+      },
+    ];
+
+    const action = {
+      type: 'UP_VOTE',
+      payload: {
+        threadId: 'thread-1',
+        userId: 'users-1',
+      },
+    };
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [action.payload.userId],
+        downVotesBy: [],
+      },
+    ]);
+  });
+  it('should return the thread with toggled DownVote when given by DOWN_VOTE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Thread Pertama',
+        body: 'Ini adalah thread pertama',
+        category: 'General',
+        createdAt: '2021-06-21T07:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+      },
+    ];
+
+    const action = {
+      type: 'DOWN_VOTE',
+      payload: {
+        threadId: 'thread-1',
+        userId: 'users-1',
+      },
+    };
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [],
+        downVotesBy: [action.payload.userId],
+      },
+    ]);
+  });
+  it('should return the thread without toggled UpVote and DownVote when given by NEUTRAL_VOTE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Thread Pertama',
+        body: 'Ini adalah thread pertama',
+        category: 'General',
+        createdAt: '2021-06-21T07:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+      },
+    ];
+
+    const action = {
+      type: 'NEUTRALIZE_VOTE_THREAD',
+      payload: {
+        threadId: 'thread-1',
+        userId: 'users-1',
+      },
+    };
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [],
+        downVotesBy: [],
+      },
+    ]);
+  });
 });
