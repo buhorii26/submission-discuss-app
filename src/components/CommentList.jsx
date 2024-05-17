@@ -10,7 +10,7 @@ function CommentList({
 }) {
   return (
     <div className="comments-list">
-      {comments.map((comment) => (
+      {comments.length ? comments.map((comment) => (
         <CommentItem
           key={comment.id}
           {...comment}
@@ -18,7 +18,8 @@ function CommentList({
           downVote={downVoteComment}
           neutralVote={neutralVoteComment}
         />
-      ))}
+      ))
+        : null }
     </div>
   );
 }

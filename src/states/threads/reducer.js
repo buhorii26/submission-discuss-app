@@ -1,11 +1,11 @@
-import { ActionType } from './action';
+import { ActionType } from './action'
 
 function threadsRecuder(threads = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
       return action.payload.threads;
     case ActionType.ADD_THREADS:
-      return [action.payload.threads, ...threads];
+      return [action.payload.thread, ...threads];
     case ActionType.UP_VOTE:
       return threads.map((thread) => {
         if (thread.id === action.payload.threadId) {

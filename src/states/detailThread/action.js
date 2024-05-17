@@ -179,7 +179,7 @@ function asyncUpVoteComment(commentId) {
 
 function asyncDownVoteComment(commentId) {
   return async (dispatch, getState) => {
-    // dispatch(showLoading());
+    dispatch(showLoading());
     const { detailThread, authUser } = getState();
     dispatch(downVoteCommentActionCreator(commentId, authUser.id));
     try {
@@ -187,7 +187,7 @@ function asyncDownVoteComment(commentId) {
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
+    dispatch(hideLoading());
   };
 }
 function asyncNeutralVoteComment(commentId) {

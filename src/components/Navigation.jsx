@@ -14,9 +14,6 @@ function Navigation({ signOut }) {
             <Link to="/">Threads</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
             <Link to="/leaderboards">Leaderboards</Link>
           </li>
           <li>
@@ -31,9 +28,6 @@ function Navigation({ signOut }) {
       <ul>
         <li>
           <Link to="/">Threads</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
         </li>
         <li>
           <Link to="/leaderboards">Leaderboards</Link>

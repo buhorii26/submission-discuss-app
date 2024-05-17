@@ -10,15 +10,17 @@ function ThreadsList({
 }) {
   return (
     <div className="threads-list">
-      {threads.map((thread) => (
-        <ThreadItem
-          key={thread.id}
-          {...thread}
-          upVote={upVote}
-          downVote={downVote}
-          neutralVote={neutralVote}
-        />
-      ))}
+      {threads.length
+        ? threads.map((thread) => (
+          <ThreadItem
+            key={thread.id}
+            {...thread}
+            upVote={upVote}
+            downVote={downVote}
+            neutralVote={neutralVote}
+          />
+        ))
+        : null }
     </div>
   );
 }

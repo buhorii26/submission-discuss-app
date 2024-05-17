@@ -187,9 +187,6 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          threadId: id,
-        }),
       },
     );
 
@@ -200,9 +197,6 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
-    const { data: { vote } } = responseJson;
-
-    return vote;
   }
   async function downVoteThread(id) {
     const response = await _fetchWithAuth(
@@ -212,9 +206,6 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          threadId: id,
-        }),
       },
     );
 
@@ -225,9 +216,6 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
-    const { data: { vote } } = responseJson;
-
-    return vote;
   }
   async function neutralVoteThread(id) {
     const response = await _fetchWithAuth(
@@ -237,9 +225,6 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          threadId: id,
-        }),
       },
     );
 
@@ -250,9 +235,6 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
-    const { data: { vote } } = responseJson;
-
-    return vote;
   }
   async function upVoteComment(threadId, commentId) {
     const response = await _fetchWithAuth(
@@ -273,7 +255,6 @@ const api = (() => {
       throw new Error(message);
     }
     const { data: { vote } } = responseJson;
-
     return vote;
   }
   async function downVoteComment(threadId, commentId) {
@@ -295,7 +276,6 @@ const api = (() => {
       throw new Error(message);
     }
     const { data: { vote } } = responseJson;
-
     return vote;
   }
   async function neutralVoteComment(commentId) {
@@ -317,7 +297,6 @@ const api = (() => {
       throw new Error(message);
     }
     const { data: { vote } } = responseJson;
-
     return vote;
   }
   async function getLeaderBoards() {
