@@ -55,27 +55,27 @@ function DetailPage() {
     dispatch(asyncAddComment({ content }));
   };
 
-  const onUpVoteComment = () => {
+  const onUpVoteComment = (commentId) => {
     if (authUser === null) {
       alert('Login First');
     } else {
-      dispatch(asyncUpVoteComment());
+      dispatch(asyncUpVoteComment(commentId));
     }
   };
 
-  const onDownVoteComment = () => {
+  const onDownVoteComment = (commentId) => {
     if (authUser === null) {
       alert('Login First');
     } else {
-      dispatch(asyncDownVoteComment());
+      dispatch(asyncDownVoteComment(commentId));
     }
   };
 
-  const onNeutralVoteComment = () => {
+  const onNeutralVoteComment = (commentId) => {
     if (authUser === null) {
       alert('Login First');
     } else {
-      dispatch(asyncNeutralVoteComment());
+      dispatch(asyncNeutralVoteComment(commentId));
     }
   };
 
