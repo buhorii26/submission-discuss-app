@@ -183,6 +183,7 @@ describe('threadsReducers function', () => {
         ownerId: 'users-1',
         upVotesBy: [],
         downVotesBy: [],
+        totalComments: 0,
       },
     ];
 

@@ -4,12 +4,6 @@
  * - detailThreadReducer function
  * - should return the initial state when given by unknown action
  * - should return the detailThread when given by RECEIVE_DETAIL_THREAD action
- * - should return the detailThread with the toggled up vote when given
- *   by UP_VOTE_DETAIL_THREAD action
- * - should return the detailThread with the toggle down vote when given
- *   by DOWN_VOTE_DETAIL_THREAD action
- * - should return the detailThread with the toggle neutral vote when given
- *   by NEUTRAL_VOTE_DETAIL_THREAD action
  */
 
 import { describe, it, expect } from 'vitest';
