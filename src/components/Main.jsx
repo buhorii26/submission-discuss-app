@@ -36,7 +36,7 @@ function Main() {
     dispatch(asyncNeutralVoteThread(id));
   };
 
-  const threadsList = threads.map((thread) => ({
+  const threadsList = threads?.map((thread) => ({
     ...thread,
     threadOwner: users.find((user) => user.id === thread.ownerId),
   }));
