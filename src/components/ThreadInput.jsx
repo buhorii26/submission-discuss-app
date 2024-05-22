@@ -25,7 +25,7 @@ function ThreadInput({ addThread }) {
         type="text"
         value={body}
         onChange={setBody}
-        placeholder="Masukkan konten"
+        placeholder="Body"
       />
       <p className="thread-input__char-left">
         <strong>

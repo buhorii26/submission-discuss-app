@@ -17,6 +17,7 @@ function CommentInput({ addComment }) {
           value={comment}
           onChange={onCommentChange}
           rows="4"
+          placeholder="Ketik disini"
         />
         <button type="button" className="comment_form-submit" onClick={onCommentSubmit}>Kirim</button>
       </form>

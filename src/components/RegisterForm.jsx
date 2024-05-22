@@ -41,7 +41,6 @@ function RegisterForm({ register }) {
       />
       <button
         type="button"
-        name="Register"
         onClick={() => register({ name, email, password })}
       >
         Register
