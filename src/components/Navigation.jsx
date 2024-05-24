@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { BsBoxArrowRight } from 'react-icons/bs';
 
 function Navigation({ signOut }) {
   const { authUser = null } = useSelector((states) => states);
@@ -33,7 +34,13 @@ function Navigation({ signOut }) {
           <Link to="/leaderboards">Leaderboards</Link>
         </li>
         <li>
-          <button type="button" onClick={signOut} className="signOut">Sign out</button>
+          <BsBoxArrowRight
+            size={20}
+            color="white"
+            type="button"
+            onClick={signOut}
+            className="signOut"
+          />
         </li>
       </ul>
     </nav>
