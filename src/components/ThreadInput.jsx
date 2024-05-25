@@ -7,8 +7,13 @@ function ThreadInput({ addThread }) {
   const [category, setCategory] = useInput('');
   const [body, setBody] = useInput('');
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addThread({ title, category, body });
+  };
+
   return (
-    <form className="thread-input">
+    <form className="thread-input" onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
@@ -30,17 +35,11 @@ function ThreadInput({ addThread }) {
       <p className="thread-input__char-left">
         <strong>
           Panjang Karakter Konten :
-          {' '}
           {body.length}
         </strong>
         /320
       </p>
-      <button
-        type="submit"
-        onClick={() => addThread({ title, category, body })}
-      >
-        Buat Thread
-      </button>
+      <button type="submit">Buat Thread</button>
     </form>
   );
 }

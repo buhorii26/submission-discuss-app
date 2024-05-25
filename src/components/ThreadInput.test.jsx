@@ -18,6 +18,9 @@ import ThreadInput from './ThreadInput';
 
 expect.extend(matchers);
 
+// Mock the requestSubmit method
+HTMLFormElement.prototype.requestSubmit = () => {};
+
 describe('ThreadInput component', () => {
   afterEach(() => {
     cleanup();
