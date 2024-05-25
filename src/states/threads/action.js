@@ -3,7 +3,7 @@ import api from '../../utils/api';
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
-  ADD_THREADS: 'ADD_THREADS',
+  ADD_THREAD: 'ADD_THREAD',
   UP_VOTE: 'UP_VOTE',
   DOWN_VOTE: 'DOWN_VOTE',
   NEUTRAL_VOTE: 'NEUTRAL_VOTE',
