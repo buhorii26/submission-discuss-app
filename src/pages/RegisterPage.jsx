@@ -29,7 +29,7 @@ function RegisterPage() {
           <RegisterForm register={onRegister} />
 
           <p>
-            Already have an account?
+            Sudah punya akun?
             {' '}
             <Link to="/">Login</Link>
           </p>
