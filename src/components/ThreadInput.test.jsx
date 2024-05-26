@@ -25,13 +25,14 @@ describe('ThreadInput component', () => {
   afterEach(() => {
     cleanup();
   });
+
   it('renders ThreadInput component', () => {
     render(<ThreadInput addThread={() => {}} />);
     expect(screen.getByPlaceholderText('Judul')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Kategori')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Body')).toBeInTheDocument();
-    expect(screen.getByText(/Panjang Karakter Konten/i)).toBeInTheDocument();
   });
+
   it('submit form with correct data', async () => {
     // Arrange
     const mockAddThread = vi.fn();

@@ -34,7 +34,7 @@ function ThreadInput({ addThread }) {
       />
       <p className="thread-input__char-left">
         <strong>
-          Panjang Karakter Konten :
+          Panjang Karakter Body :
           {body.length}
         </strong>
         /320
