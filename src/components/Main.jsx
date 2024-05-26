@@ -11,6 +11,8 @@ import {
   asyncDownVoteThread,
   asyncNeutralVoteThread,
 } from '../states/threads/action';
+import Content from './styled/Content';
+import Card from './styled/Card';
 
 function Main() {
   const {
@@ -46,17 +48,17 @@ function Main() {
       <>
         <Loading />
         <main>
-          <div className="content">
+          <Content>
             <h1>Diskusi Aktif</h1>
-            <div className="card">
+            <Card>
               <ThreadList
                 threads={threadsList}
                 upVote={onUpVoteThread}
                 downVote={onDownVoteThread}
                 neutralVote={onNeutralVoteThread}
               />
-            </div>
-          </div>
+            </Card>
+          </Content>
         </main>
       </>
     );
@@ -66,9 +68,9 @@ function Main() {
     <>
       <Loading />
       <main>
-        <div className="content">
+        <Content>
           <h1>Diskusi Aktif</h1>
-          <div className="card">
+          <Card>
             <ThreadList
               threads={threadsList}
               upVote={onUpVoteThread}
@@ -88,8 +90,8 @@ function Main() {
                 <IoMdAdd style={{ fontSize: '30px', color: 'black' }} />
               </Fab>
             </Link>
-          </div>
-        </div>
+          </Card>
+        </Content>
       </main>
     </>
   );

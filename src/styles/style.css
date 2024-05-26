@@ -49,11 +49,6 @@ nav a:hover {
 .profile img {
   max-width: 200px;
 }
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  padding: 20px;
-}
 .jumbotron {
   font-size: 20px;
   padding: 60px;
@@ -84,13 +79,6 @@ main {
 .app-container {
   max-width: 800px;
   margin: 0 auto;
-}
-.content {
-  flex: 5;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  gap: 1rem 2rem;
 }
 aside {
   flex: 1;
@@ -128,33 +116,6 @@ header {
 .register-page h2 {
   font-weight: 300;
   font-size: 48px;
-}
-
-.login-input input,
-.register-input input {
-  display: block;
-  width: 100%;
-  padding: 12px 8px;
-  margin: 8px 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid var(--gray-dark-color);
-}
-
-.login-input button,
-.register-input button {
-  margin-top: 12px;
-  width: 100%;
-  padding: 12px 8px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  border: 0;
-  background-color: var(--accent-color);
-  color: white;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
 }
 
 .add-thread-page {
