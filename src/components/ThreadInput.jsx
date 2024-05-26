@@ -34,12 +34,15 @@ function ThreadInput({ addThread }) {
       />
       <p className="thread-input__char-left">
         <strong>
-          Panjang Karakter Body :
+          Panjang Karakter Konten :
+          {' '}
           {body.length}
         </strong>
         /320
       </p>
-      <button type="submit">Buat Thread</button>
+      <button type="submit">
+        Buat Thread
+      </button>
     </form>
   );
 }
