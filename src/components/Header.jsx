@@ -11,7 +11,7 @@ function Header() {
   return (
     <header>
       <div className="jumbotron">
-        <h1>Aplikasi Diskusi TES</h1>
+        <h1>Aplikasi Diskusi</h1>
         <p>
           Sebuah aplikasi memudahkan pengguna untuk berdikusi sesuatu topik.
         </p>
