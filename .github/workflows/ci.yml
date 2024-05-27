@@ -1,26 +1,50 @@
 name: Continuous Integration
- 
+
 on:
   pull_request:
     branches:
       - main
- 
+
 jobs:
   automation-test-job:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12, 14, 16, 18]
- 
+        node-version: [12, 14, 16] # Daftar versi Node.js yang ingin diuji
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and test
-        run: |
-          npm install
-          npm run ci:test
-          npx wait-on http://localhost:5173
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server
+        run: npm run start & # Menjalankan server di background
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:5173
+
+      - name: Run tests
+        run: npm run ci:test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ./public/test-results # Ganti dengan path di mana hasil tes disimpan
