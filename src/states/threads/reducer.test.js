@@ -64,6 +64,47 @@ describe('threadsReducers function', () => {
     expect(nextState).toEqual(action.payload.threads);
   });
 
+  it('should return the threads with the new thread when given by ADD_THREAD action', () => {
+    // arrange
+
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Thread Pertama',
+        body: 'Ini adalah thread pertama',
+        category: 'General',
+        createdAt: '2021-06-21T07:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+        totalComments: 0,
+      },
+    ];
+
+    const action = {
+      type: 'ADD_THREAD',
+      payload: {
+        thread: {
+          id: 'thread-2',
+          title: 'Thread Test 2',
+          body: 'Ini adalah thread Kedua',
+          category: 'General',
+          createdAt: '2021-06-21T07:00:001.000Z',
+          ownerId: 'users-2',
+          upVotesBy: [],
+          downVotesBy: [],
+          totalComments: 0,
+        },
+      },
+    };
+
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([action.payload.thread, ...initialState]);
+  });
+
   it('should return the thread with toggled UpVote when given by UP_VOTE_THREAD action', () => {
     // arrange
     const initialState = [
