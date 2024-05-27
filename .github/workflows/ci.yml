@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [12, 14, 16, 18]
  
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and test
+      - name: Install dependencies
+        run: npm install
+  
+      - name: Run tests
         run: |
-          npm install
-          npm run ci:test
+            npm run ci:test
+            npx wait-on http://localhost:5173
