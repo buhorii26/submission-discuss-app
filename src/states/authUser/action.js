@@ -46,10 +46,31 @@ function asyncUnsetAuthUser() {
   };
 }
 
+function asyncCheckAuthUser() {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    const token = api.getAccessToken();
+    if (token) {
+      try {
+        api.putAccessToken(token);
+        const authUser = await api.getOwnProfile();
+        dispatch(setAuthUserActionCreator(authUser));
+      } catch (error) {
+        alert(error.message);
+        dispatch(unsetAuthUserActionCreator());
+      }
+    } else {
+      dispatch(unsetAuthUserActionCreator());
+    }
+    dispatch(hideLoading());
+  };
+}
+
 export {
   ActionType,
   setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   asyncSetAuthUser,
   asyncUnsetAuthUser,
+  asyncCheckAuthUser,
 };
